@@ -153,6 +153,9 @@ echo "xdebug.remote_handler=dbgp" >> /usr/local/etc/php/conf.d/env.ini
 echo "xdebug.remote_mode=req" >> /usr/local/etc/php/conf.d/env.ini
 echo "xdebug.remote_autostart=true" >> /usr/local/etc/php/conf.d/env.ini
 
+sed -ri "/define('WP_DEBUG', false);/idefine('WP_HOME','http://'.$_SERVER['HTTP_HOST']);" wp-config.php
+sed -ri "/define('WP_DEBUG', false);/idefine('WP_SITEURL','http://'.$_SERVER['HTTP_HOST']);" wp-config.php
+
 if [ -n "${THEME+1}" ]; then
 	echo "Installing theme $THEME"
 	wget -O $THEME.zip http://wpapi.herokuapp.com/theme/$THEME/download
