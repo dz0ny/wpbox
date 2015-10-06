@@ -30,11 +30,6 @@
         }
     }
 
-    function dynamic_rewrite()
-    {
-        return 'http://'.$_SERVER['HTTP_HOST'];
-    }
-
     function env_render()
     {
         ?>
@@ -63,8 +58,6 @@
     }
 
     add_action('wp_install', 'install_defaults', 9999, 1);
-    add_filter('pre_option_home', 'dynamic_rewrite');
-    add_filter('pre_option_siteurl', 'dynamic_rewrite');
     add_action('phpmailer_init', 'phpmailer_init_mailhog');
     if (is_blog_installed()) {
         add_action('admin_menu', 'admin_menu_mu');
